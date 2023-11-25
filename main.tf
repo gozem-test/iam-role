@@ -2,9 +2,12 @@ data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
 
-    principals {
-      type        = var.assume_role_service_type
-      identifiers = var.assume_role_service_identifiers
+    dynamic "principals" {
+      for_each = { for principal in var.principals : principal.identifiers => principal }
+      content {
+        type        = principal.value.type
+        identifiers = principal.value.identifiers
+      }
     }
 
     actions = ["sts:AssumeRole"]

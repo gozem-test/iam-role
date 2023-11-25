@@ -15,14 +15,11 @@ variable "AWS_REGION" {
   type = string
 }
 
-variable "assume_role_service_type" {
-  type    = string
-  default = "Service"
-}
-
-variable "assume_role_service_identifiers" {
-  type    = list(string)
-  default = ["lambda.amazonaws.com"]
+variable "principals" {
+  type = list(object({
+    type        = string
+    identifiers = list(string)
+  }))
 }
 
 variable "role_name" {
