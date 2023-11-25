@@ -5,8 +5,8 @@ data "aws_iam_policy_document" "assume_role" {
     dynamic "principals" {
       for_each = { for principal in var.principals : principal.type => principal }
       content {
-        type        = principal.value.type
-        identifiers = principal.value.identifiers
+        type        = principals.value.type
+        identifiers = principals.value.identifiers
       }
     }
 
