@@ -33,6 +33,12 @@ variable "condition" {
     variable = string
     values   = list(string)
   })
+
+  default = {
+    test     = "test"
+    variable = "variable"
+    values   = ["values"]
+  }
 }
 
 variable "role_name" {
