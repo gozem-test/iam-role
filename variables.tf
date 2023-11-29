@@ -22,6 +22,19 @@ variable "principals" {
   }))
 }
 
+variable "is_external" {
+  type    = bool
+  default = false
+}
+
+variable "condition" {
+  type = object({
+    test     = string
+    variable = string
+    values   = list(string)
+  })
+}
+
 variable "role_name" {
   type = string
 }
