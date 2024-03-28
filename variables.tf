@@ -54,6 +54,11 @@ variable "policy_statements" {
     sid       = string
     actions   = list(string)
     resources = list(string)
+    condition = optional(object({
+      test     = string
+      variable = string
+      values   = list(string)
+    }))
   }))
 
   default = [
