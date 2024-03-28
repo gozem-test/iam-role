@@ -52,6 +52,8 @@ resource "aws_iam_role" "role" {
 }
 
 resource "aws_iam_role_policy" "policy" {
+  count = length(var.policy_statements) > 0 && var.policy_name != "" ? 1 : 0
+
   name   = var.policy_name
   role   = aws_iam_role.role.id
   policy = data.aws_iam_policy_document.policy_document.json
