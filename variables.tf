@@ -51,9 +51,10 @@ variable "policy_name" {
 
 variable "policy_statements" {
   type = list(object({
-    sid       = string
-    actions   = list(string)
-    resources = list(string)
+    sid           = string
+    actions       = list(string)
+    resources     = list(string)
+    has_condition = optional(bool, false)
     condition = optional(object({
       test     = string
       variable = string
