@@ -49,6 +49,14 @@ variable "policy_name" {
   type = string
 }
 
+variable "policy_attachments" {
+  type = list(object({
+    arn = string
+  }))
+
+  default = []
+}
+
 variable "policy_statements" {
   type = list(object({
     sid           = string

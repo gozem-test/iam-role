@@ -56,3 +56,10 @@ resource "aws_iam_role_policy" "policy" {
   role   = aws_iam_role.role.id
   policy = data.aws_iam_policy_document.policy_document.json
 }
+
+resource "aws_iam_role_policy_attachment" "attachment" {
+  for_each = { for attachment in var.policy_attachments : attachment.arn => attachment }
+
+  policy_arn = each.value.arn
+  role       = aws_iam_role.role.name
+}
